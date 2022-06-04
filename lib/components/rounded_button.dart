@@ -1,36 +1,31 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
-  final dynamic buttonColor;
-  final dynamic textColor;
-  final dynamic onPressedFunction;
+  final dynamic color;
+  final dynamic onPressed;
   const RoundedButton({
     Key? key,
-    required this.size,
     required this.text,
-    required this.buttonColor,
-    required this.textColor,
-    required this.onPressedFunction,
+    required this.color,
+    required this.onPressed,
   }) : super(key: key);
-
-  final Size size;
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(100),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          primary: Colors.white,
-          backgroundColor: buttonColor, // Background Color
-        ),
-        onPressed: onPressedFunction,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor,
-            fontSize: 20,
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(primary: color, shape: StadiumBorder()),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'OktaNeue',
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

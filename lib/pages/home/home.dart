@@ -41,15 +41,13 @@ class Home extends StatelessWidget {
                   )),
                   Container(
                     width: size.width * 0.7,
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 5),
                     child: RoundedButton(
                       text: 'LOGIN',
-                      buttonColor: Colors.green[500],
-                      textColor: Colors.white,
-                      onPressedFunction: () {
+                      color: Colors.green[500],
+                      onPressed: () {
                         Navigator.pushNamed(context, '/login');
                       },
-                      size: size,
                     ),
                   ),
                   Container(
@@ -57,12 +55,10 @@ class Home extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                     child: RoundedButton(
                       text: 'SIGNUP',
-                      buttonColor: Colors.green[300],
-                      textColor: Colors.white,
-                      onPressedFunction: () {
+                      color: Colors.green[300],
+                      onPressed: () {
                         Navigator.pushNamed(context, '/signup');
                       },
-                      size: size,
                     ),
                   ),
                 ],
