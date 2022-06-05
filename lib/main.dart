@@ -13,7 +13,6 @@ void main() => runApp(MaterialApp(initialRoute: '/home', routes: {
       '/home': (context) => Home(),
       '/login': (context) => Login(),
       '/signup': (context) => Signup(),
-      '/stats': (context) => Profile(),
-      // '/profile': (context) => Profile(),
-      // '/stats': (context) => Stats(),
+      '/stats': (context) => Stats(),
+      '/profile': (context) => Profile(),
     }));
