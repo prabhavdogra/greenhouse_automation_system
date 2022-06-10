@@ -7,6 +7,7 @@ import 'package:greenhouse_automation_system/pages/login/login.dart';
 import 'package:greenhouse_automation_system/pages/signup/signup.dart';
 import 'package:greenhouse_automation_system/pages/stats/stats.dart';
 import 'package:greenhouse_automation_system/pages/profile/profile.dart';
+import 'package:greenhouse_automation_system/pages/add_hardware/add_hardware.dart';
 
 void main() => runApp(MaterialApp(initialRoute: '/home', routes: {
       '/loading': (context) => Preloader(),
@@ -14,5 +15,7 @@ void main() => runApp(MaterialApp(initialRoute: '/home', routes: {
       '/login': (context) => Login(),
       '/signup': (context) => Signup(),
       '/stats': (context) => Stats(),
+      // Edited
       '/profile': (context) => Profile(),
+      '/addSensor': (context) => AddSensor(),
     }));
