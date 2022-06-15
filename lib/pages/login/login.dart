@@ -4,8 +4,13 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:greenhouse_automation_system/services/auth_token.dart';
+import 'package:greenhouse_automation_system/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:greenhouse_automation_system/pages/login/background.dart';
+import 'package:greenhouse_automation_system/services/auth_token.dart';
+import 'package:greenhouse_automation_system/services/login.dart';
+
 import 'package:greenhouse_automation_system/components/rounded_button.dart';
 
 class Login extends StatefulWidget {
@@ -16,34 +21,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  String emailID = '', password = '', errorMessage = '';
   @override
   Widget build(BuildContext context) {
-    String emailID = '', password = '', errorMessage = 'a';
-    Future<String> authenticateUser(String email, String password) async {
-      final dynamic apiUrl = Uri.parse("http://10.0.2.2:3000/api/auth/login");
-      var response = await http.post(
-        apiUrl,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{
-          'email': '$email',
-          'password': '$password',
-        }),
-      );
-      if (response.statusCode == 400) {
-        setState(() {
-          errorMessage = response.body;
-        });
-        print(errorMessage);
-        print('11');
-        return '';
-      }
-      print('22');
-      Map responseData = jsonDecode(response.body);
-      return responseData['token'];
-    }
-
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -105,23 +85,30 @@ class _LoginState extends State<Login> {
                       onPressed: () async {
                         final String email = emailController.text;
                         final String password = passwordController.text;
-                        final String response =
-                            await authenticateUser(email, password);
-                        //print(response);
-                        //print('11');
-                        //print("Clicked");
-                        if (response != '') {
-                          Navigator.pushNamed(context, '/home');
-                        }
+                        await UserLogin(Auth, email, password);
+                        print(Auth.isLoggedIn);
+                        setState(() {
+                          errorMessage = Auth.errorMessage;
+                        });
+                        if (Auth.errorMessage == '') {
+                          Navigator.pushNamed(context, '/stats');
+                        } else {}
                       },
                     ),
                   ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
                 //child: Text('a'),
-                child: Text('$errorMessage'),
+                child: Text(
+                  '$errorMessage',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
               )
             ],
           ),
