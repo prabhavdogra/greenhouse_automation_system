@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class Stats extends StatefulWidget {
   const Stats({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class _StatsState extends State<Stats> {
                   textAlign: TextAlign.left,
                   style: GoogleFonts.montserrat(
                     textStyle: const TextStyle(
-                      fontSize: 12,
+                      fontSize: 13,
                       color: Color(0xFF24F0B6),
                     ),
                   ),
@@ -91,23 +92,23 @@ class _StatsState extends State<Stats> {
       body: Container(),
     );
   }
+}
 
-  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: ListTile(
-          contentPadding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-          minLeadingWidth: 20,
-          title: Text(
-            item,
-            style: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
-                fontSize: 12,
-                letterSpacing: 1.2,
-                color: Color(0xFF808080),
-                fontWeight: FontWeight.bold,
-              ),
+DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+      value: item,
+      child: ListTile(
+        contentPadding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+        minLeadingWidth: 20,
+        title: Text(
+          item,
+          style: GoogleFonts.montserrat(
+            textStyle: const TextStyle(
+              fontSize: 12,
+              letterSpacing: 1.2,
+              color: Color(0xFF808080),
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
-      );
-}
+      ),
+    );
