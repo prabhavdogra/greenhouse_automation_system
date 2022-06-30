@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:greenhouse_automation_system/components/rounded_button.dart';
 
 class Stats extends StatefulWidget {
   const Stats({Key? key}) : super(key: key);
@@ -89,7 +90,38 @@ class _StatsState extends State<Stats> {
           ],
         ),
       ),
-      body: Container(),
+      body: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Container(
+                width: 0.8 * size.width,
+                child: Center(
+                  child: RoundedButton(
+                    text: 'My Profile',
+                    color: Colors.purple[500],
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                  ),
+                ),
+              ),
+              Container(
+                width: 0.8 * size.width,
+                child: Center(
+                  child: RoundedButton(
+                    text: 'Add Hardware',
+                    color: Colors.purple[500],
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/addSensor');
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

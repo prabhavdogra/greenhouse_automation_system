@@ -2,16 +2,11 @@
 // ignore_for_file: use_key_in_widget_constructors
 // ignore_for_file: unused_local_variable
 // ignore_for_file: prefer_const_literals_to_create_immutables
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:greenhouse_automation_system/services/auth_token.dart';
 import 'package:greenhouse_automation_system/main.dart';
-import 'package:http/http.dart' as http;
 import 'package:greenhouse_automation_system/pages/login/background.dart';
-import 'package:greenhouse_automation_system/services/auth_token.dart';
-import 'package:greenhouse_automation_system/services/login.dart';
-
 import 'package:greenhouse_automation_system/components/rounded_button.dart';
+import 'package:greenhouse_automation_system/services/login_auth.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -21,7 +16,10 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  String emailID = '', password = '', errorMessage = '';
+  String emailID = '';
+  String password = '';
+  String errorMessage = '';
+  bool hidePassword = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -62,10 +60,24 @@ class _LoginState extends State<Login> {
                 child: SingleChildScrollView(
                   child: TextField(
                     controller: passwordController,
+                    obscureText: hidePassword,
                     decoration: InputDecoration(
                       hintText: '********',
                       labelText: 'Password',
                       prefixIcon: Icon(Icons.mail),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            hidePassword = !hidePassword;
+                            if (hidePassword) {}
+                          });
+                        },
+                        icon: hidePassword
+                            ? Icon(Icons.visibility)
+                            : Icon(
+                                Icons.visibility_off,
+                              ),
+                      ),
                       contentPadding: EdgeInsets.zero,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(50.0)),

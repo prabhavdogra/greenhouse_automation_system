@@ -21,7 +21,6 @@ void main() => runApp(MaterialApp(initialRoute: '/home', routes: {
       '/login': (context) => Login(),
       '/signup': (context) => Signup(),
       '/stats': (context) => Stats(),
-      // Edited
       '/profile': (context) => Profile(),
       '/addSensor': (context) => AddSensor(),
     }));
